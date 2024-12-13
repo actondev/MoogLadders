@@ -4,6 +4,7 @@
 #define LADDER_FILTER_BASE_H
 
 #include "Util.h"
+#include <cstring> // memset
 
 class LadderFilterBase
 {
