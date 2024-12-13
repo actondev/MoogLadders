@@ -22,6 +22,16 @@ This code is Unlicensed (i.e. public domain); in an email exchange on
 You may use it however you might like."
 
 Source: http://song-swap.com/MUMT618/aaron/Presentation/demo.html
+
+The original source seems long gone, can't find it even in the web
+archive. There's
+https://web.archive.org/web/20160713162111/http://song-swap.com/MUMT618/aaron/Presentation/contents.html
+but the other pages seem not archived.  Note that this file contains a
+(possibly) bug fix. Since the orignal source cannot be found can not
+know the original author's intent. But following "Oscillator and
+filter algorithms for // virtual analog synthesis" (Välimäki,
+Huovilainen 2006) the per-stage input processing was swapped for the
+gains of direct vs delayed input.
 */
 
 class KrajeskiMoog final : public LadderFilterBase
@@ -51,7 +61,7 @@ public:
 			
 			for(int i = 0; i < 4; i++)
 			{
-				state[i+1] = fclamp(g * (0.3 / 1.3 * state[i] + 1 / 1.3 * delay[i] - state[i + 1]) + state[i + 1], -1e30, 1e30);
+				state[i+1] = fclamp(g * (1 / 1.3 * state[i] + 0.3 / 1.3 * delay[i] - state[i + 1]) + state[i + 1], -1e30, 1e30);
 				
 				delay[i] = state[i];
 			}
