@@ -43,3 +43,6 @@ DerivedData
 *.reapeaks
 
 local_ignore/
+
+/.zig-cache
+/zig-out
