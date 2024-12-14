@@ -53,8 +53,16 @@ public:
 
 	virtual void SetCutoff(float c) override
 	{
-		cutoff = c * 2 * MOOG_PI / sampleRate;
-		cutoff = moog_min(cutoff, 1);
+                // formula from "Oscillator and filter algorithms for
+                // virtual analog synthesis" (Välimäki, Huovilainen
+                // 2006)
+		const auto wc = c * 2 * MOOG_PI / sampleRate;
+                const auto wc2 = wc * wc;
+                const auto wc3 = wc2 * wc;
+                const auto wc4 = wc3 * wc;
+                const auto g = 0.9892 * wc - 0.4342 * wc2 + 0.1381 * wc3 - 0.0202 * wc4;
+                // Since it has to be clamped, goes up to ~13440 Hz
+		cutoff = moog_min(g, 1);
 	}
 
 private:
