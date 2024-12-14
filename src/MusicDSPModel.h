@@ -1,6 +1,6 @@
 // This file is unlicensed and uncopyright as found at:
-// http://www.musicdsp.org/showone.php?id=24
-// Considering how widely this same code has been used in ~100 projects on GitHub with 
+// https://www.musicdsp.org/en/latest/Filters/24-moog-vcf.html
+// Considering how widely this same code has been used in ~100 projects on GitHub with
 // various licenses, it might be reasonable to suggest that the license is CC-BY-SA
 
 #pragma once
@@ -62,8 +62,8 @@ public:
 	{
 		cutoff = 2.0 * c / sampleRate;
 
-		p = cutoff * (1.8 - 0.8 * cutoff);
-		k = 2.0 * sin(cutoff * MOOG_PI * 0.5) - 1.0;
+		p = sin(cutoff * MOOG_PI * 0.5);
+		k = 2.0 * p - 1.0;
 		t1 = (1.0 - p) * 1.386249;
 		t2 = 12.0 + t1 * t1;
 
