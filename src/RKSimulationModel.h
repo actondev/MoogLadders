@@ -101,7 +101,6 @@ public:
 	
 	virtual void SetResonance(float r) override
 	{
-		// 0 to 10
 		resonance = r;
 	}
 	
@@ -118,7 +117,7 @@ private:
 		double satstate1 = clip(state[1], saturation, saturationInv);
 		double satstate2 = clip(state[2], saturation, saturationInv);
 		
-		dstate[0] = cutoff * (clip(input - resonance * state[3], saturation, saturationInv) - satstate0);
+		dstate[0] = cutoff * (clip(input - 4 * resonance * state[3], saturation, saturationInv) - satstate0);
 		dstate[1] = cutoff * (satstate0 - satstate1);
 		dstate[2] = cutoff * (satstate1 - satstate2);
 		dstate[3] = cutoff * (satstate2 - clip(state[3], saturation, saturationInv));
