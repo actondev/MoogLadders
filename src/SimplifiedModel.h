@@ -1,3 +1,10 @@
+// The contents of this are just weird. No, it doesn't implement the
+// dafx book model. Here a non-linearity tanh is introduced in every
+// stage.. Better take a look in "Oscillator and filter algorithms for
+// virtual analog synthesis" (Välimäki, Huovilainen 2006). And by the
+// way, KrajeskiModel seems to implement that paper, though initially
+// there was a difference (I guess bug).
+
 /* -------------------------------------------------------------------------
  * This source code is provided without any warranties as published in 
  * DAFX book 2nd edition, copyright Wiley & Sons 2011, available at 
