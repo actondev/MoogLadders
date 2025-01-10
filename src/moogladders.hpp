@@ -1,5 +1,6 @@
 #pragma once
 
+#include "DAngeloModel.h"
 #include "HuovilainenModel.h"
 #include "ImprovedModel.h"
 #include "KrajeskiModel.h"
@@ -9,7 +10,6 @@
 #include "RKSimulationModel.h"
 #include "SimplifiedModel.h"
 #include "StilsonModel.h"
-#include "moogladders.h"
 
 struct MoogLadders {
   StilsonMoog stilsonModel{44100};
@@ -21,6 +21,7 @@ struct MoogLadders {
   KrajeskiMoog aaronModel{44100};
   RKSimulationMoog rkModel{44100};
   OberheimVariationMoog oberheimModel{44100};
+  DAngeloMoog dangeloModel{44100};
 
   float process(float in, MoogLadderType type) {
     float buffer[1] = {in};
@@ -52,6 +53,9 @@ struct MoogLadders {
       case OberheimVariation:
         oberheimModel.Process(buffer, 1);
         break;
+      case DAngelo:
+        dangeloModel.Process(buffer, 1);
+        break;
     }
     return buffer[0];
   }
@@ -66,6 +70,7 @@ struct MoogLadders {
     aaronModel.SetResonance(Q);
     rkModel.SetResonance(Q);
     oberheimModel.SetResonance(Q);
+    dangeloModel.SetResonance(Q);
   }
 
   void setCutoff(float f) {
@@ -78,5 +83,6 @@ struct MoogLadders {
     aaronModel.SetCutoff(f);
     rkModel.SetCutoff(f);
     oberheimModel.SetCutoff(f);
+    dangeloModel.SetCutoff(f);
   }
 };

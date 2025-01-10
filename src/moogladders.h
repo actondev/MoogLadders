@@ -9,7 +9,8 @@ typedef enum MoogLadderType {
   MusicDSP,
   Krajeski,
   RKSimulation,
-  OberheimVariation
+  OberheimVariation,
+  DAngelo,
 } MoogLadderType;
 
 typedef struct moogladders_t {
